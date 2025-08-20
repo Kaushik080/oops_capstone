@@ -16,6 +16,7 @@ public class Main {
     private static final List<Transaction> transactions = new ArrayList<>();
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    static boolean running = true;
 
 
 
@@ -25,7 +26,7 @@ public class Main {
         System.out.println("Welcome");
 
         try {
-            while (true) {
+            while (running) {
                 showMainMenu();
             }
         } catch (Exception e) {
@@ -47,7 +48,7 @@ public class Main {
         System.out.println("Enter your choice: ");
         int choice = getInput();
 
-        switch (choice){
+        switch (choice) {
             case 1:
                 registerCustomer();
                 break;
@@ -63,7 +64,14 @@ public class Main {
             case 5:
                 viewTransactionHistory();
                 break;
+            case 6:
+                System.out.println("Exiting...");
+                running = false;
+                break;
+            default:
+                System.out.println("Invalid Option");
         }
+
     }
 
     private static int getInput() {
@@ -166,6 +174,7 @@ public class Main {
         System.out.println("\n===Perform Transaction===");
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
+        System.out.println("3. Transfer");
         System.out.println("Enter transaction choice: ");
 
         int transactionChoice = getInput();
