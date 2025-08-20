@@ -87,14 +87,14 @@ public abstract class Account {
         if(amount.compareTo(BigDecimal.ZERO) <= 0){
             throw new InvalidDepositValueException("Deposit value must be greater than zero");
         }
-        this.balance.add(amount);
+        this.balance = this.balance.add(amount);
     }
 
     public void withdraw(BigDecimal amount){
         if(this.balance.compareTo(amount) < 0){
             throw new InsufficientBalanceException("Insufficient balance");
         }
-        this.balance.subtract(amount);
+        this.balance = this.balance.subtract(amount);
     }
 
     public abstract BigDecimal getInterestRate();
